@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.ListIterator;
 
 abstract class Compoent {
-	abstract void op();
+	abstract void print();
 }
 
 class Composite extends Compoent {
@@ -15,44 +15,53 @@ class Composite extends Compoent {
 		list = new ArrayList<Component>();
 	}
 
-	void addCompoent(Component c) {
+	public void addCompoent(Component c) {
 		list.add(c);
 	}
 
-	
-	void op() {
+	void print() {
 		ListIterator<Component> iterator = list.listIterator();
 		while (iterator.hasNext()) {
 			Component c = iterator.next();
-			c.op();
+			c.print();
 		}
-
 	}
 }
 
-	// "Leaf"
-	class Leaf extends Component {
-		// operation() in the "Leaf"
-		void op() {
-		}
+class Leaf extends Component {
+	// operation() in the "Leaf"
+	void print() {
+	}
+}
+
+class Question extends Compoent {
+	String description;
+
+	public Question(String desc) {
+		this.description = desc;
 	}
 
-	class Question {
-		String description;
-
-		public Question(String desc) {
-			this.description = desc;
-		}
-
-		public void print() {
-			System.out.println(description);
-		}
+	public void print() {
+		System.out.println(description);
 	}
+}
 
-	class main {
-		void m1(Component[] cc) {
-			for (Component c : cc)
-				 c.op();
-		}
+class main {
+	
+	Question q1 = new Question("q1:1+1=?");
+    
+	Composite addt1 = new Composite();
+	addt1.addCompoent(new Question("Q2:2+2=?"));
+	addt1.addCompoent(new Question("Q3:3+3=?"));
+
+	Composite all = new Composite();
+     all.addCompoent(q1);
+     all.addCompoent(addt1);
+     
+ 
+	
+	void m1(Component[] cc) {
+		for (Component c : cc)
+			c.print();
 	}
-
+}
