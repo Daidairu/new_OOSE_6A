@@ -70,5 +70,6 @@ public class new_6a {
 		test.addComponent(addt2);
 
 		test.print();
+		System.out.println("D0247909  HSIAO-HUNG-RU");
 	}
 }
