@@ -1,8 +1,58 @@
 package new_OOSE_6A;
 
-public class new_6a {
+import java.awt.Component;
+import java.util.ArrayList;
+import java.util.ListIterator;
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+abstract class Compoent {
+	abstract void op();
+}
+
+class Composite extends Compoent {
+	ArrayList<Component> list;
+
+	public Composite() {
+		list = new ArrayList<Component>();
+	}
+
+	void addCompoent(Component c) {
+		list.add(c);
+	}
+
+	
+	void op() {
+		ListIterator<Component> iterator = list.listIterator();
+		while (iterator.hasNext()) {
+			Component c = iterator.next();
+			c.op();
+		}
+
 	}
 }
+
+	// "Leaf"
+	class Leaf extends Component {
+		// operation() in the "Leaf"
+		void op() {
+		}
+	}
+
+	class Question {
+		String description;
+
+		public Question(String desc) {
+			this.description = desc;
+		}
+
+		public void print() {
+			System.out.println(description);
+		}
+	}
+
+	class main {
+		void m1(Component[] cc) {
+			for (Component c : cc)
+				 c.op();
+		}
+	}
+
