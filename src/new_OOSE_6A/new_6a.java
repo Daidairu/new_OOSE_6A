@@ -1,21 +1,20 @@
 package new_OOSE_6A;
 
-import java.awt.Component;
 import java.util.ArrayList;
 import java.util.ListIterator;
 
-abstract class Compoent {
+abstract class Component {
 	abstract void print();
 }
 
-class Composite extends Compoent {
+class Composite extends Component {
 	ArrayList<Component> list;
 
 	public Composite() {
 		list = new ArrayList<Component>();
 	}
 
-	public void addCompoent(Component c) {
+	public void addComponent(Component c) {
 		list.add(c);
 	}
 
@@ -28,13 +27,7 @@ class Composite extends Compoent {
 	}
 }
 
-class Leaf extends Component {
-	// operation() in the "Leaf"
-	void print() {
-	}
-}
-
-class Question extends Compoent {
+class Question extends Component {
 	String description;
 
 	public Question(String desc) {
@@ -46,22 +39,36 @@ class Question extends Compoent {
 	}
 }
 
-class main {
-	
-	Question q1 = new Question("q1:1+1=?");
-    
-	Composite addt1 = new Composite();
-	addt1.addCompoent(new Question("Q2:2+2=?"));
-	addt1.addCompoent(new Question("Q3:3+3=?"));
 
-	Composite all = new Composite();
-     all.addCompoent(q1);
-     all.addCompoent(addt1);
-     
- 
-	
-	void m1(Component[] cc) {
-		for (Component c : cc)
-			c.print();
+class Question2 extends Component {
+	String description;
+
+	public Question2(String desc) {
+		this.description = desc;
+	}
+
+	public void print() {
+		System.out.println(description);
+	}
+}
+
+public class new_6a {
+
+	public static void main(String[] args) {
+
+		Composite test = new Composite();
+
+		Composite addt1 = new Composite();
+		addt1.addComponent(new Question("t1Q1:1+1=?"));
+		addt1.addComponent(new Question("t1Q2:2+2=?"));
+
+		Composite addt2 = new Composite();
+		addt1.addComponent(new Question2("t2Q1:1*1=?"));
+		addt1.addComponent(new Question2("t2Q2:2*2=?"));
+
+		test.addComponent(addt1);
+		test.addComponent(addt2);
+
+		test.print();
 	}
 }
